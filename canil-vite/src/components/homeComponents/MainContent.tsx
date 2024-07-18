@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 
 const Maincontent = () => {
@@ -31,9 +29,8 @@ const Maincontent = () => {
             {dogs.map((dog, index) => (
               <img
                 key={index}
-                className={`absolute w-full h-full object-cover transition-opacity duration-500 ${
-                  index === currentImage ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute w-full h-full object-cover transition-opacity duration-500 ${index === currentImage ? "opacity-100" : "opacity-0"
+                  }`}
                 src={dog}
                 alt="Cão"
               />
