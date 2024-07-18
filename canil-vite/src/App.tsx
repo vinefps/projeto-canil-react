@@ -4,11 +4,10 @@ import Blog from "./views/Blog";
 import Cadastro from "./views/Cadastro";
 import Login from "./views/Login";
 import Home from "./views/Home";
-import BreedPage from "./views/BreedPage";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useParams } from "react-router-dom";
+
 
 import Boxer from "./views/animais/Boxer";
 import BulldogF from "./views/animais/Bullf";
@@ -24,7 +23,7 @@ import Pug from "./views/animais/Pug";
 import Rottweiler from "./views/animais/Rottweiler";
 
 function App() {
-  const { id } = useParams();
+
 
   return (
     <main>
@@ -48,7 +47,6 @@ function App() {
           <Route path={`/cadastro`} element={<Cadastro />} />
           <Route path={`/entrar`} element={<Login />} />
           <Route path={`/blog`} element={<Blog />} />
-          <Route path="/animais/:breed" element={<BreedPage />} />{" "}
         </Routes>
         <Footer />
       </Router>
