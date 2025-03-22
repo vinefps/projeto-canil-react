@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function Footer() {
-  const [hoveredIcon, setHoveredIcon] = useState(null);
+  const [hoveredIcon, setHoveredIcon] = useState<number | null>(null);
   
   const socialMedia = [
     { name: 'Instagram', icon: '/instagram.jpg', url: 'https://www.instagram.com', color: 'from-purple-500 to-pink-500' },
@@ -179,50 +179,3 @@ function Footer() {
                   <span className="text-xs mt-1 font-medium">{social.name}</span>
                 </a>
               ))}
-            </div>
-            
-            {/* App store badges */}
-            <div className="mt-6">
-              <h4 className="text-sm font-semibold text-white mb-2">
-                Baixe nosso app
-              </h4>
-              <div className="flex space-x-2">
-                <a href="#" className="bg-black text-white text-xs rounded px-2 py-1 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                  </svg>
-                  App Store
-                </a>
-                <a href="#" className="bg-black text-white text-xs rounded px-2 py-1 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                  </svg>
-                  Play Store
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Linha separadora */}
-        <div className="border-t border-blue-400/30 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-blue-100 text-sm">
-              © {new Date().getFullYear()} PetAdoção. Todos os direitos reservados.
-            </p>
-            
-            <div className="mt-4 md:mt-0">
-              <ul className="flex flex-wrap space-x-4 text-xs text-blue-200">
-                <li><a href="#" className="hover:text-white transition-colors">Política de Privacidade</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Termos de Uso</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contato</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-export default Footer;
