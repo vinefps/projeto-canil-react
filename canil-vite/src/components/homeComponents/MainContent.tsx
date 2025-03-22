@@ -15,6 +15,15 @@ const MainContent = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
 
+  // Função para converter nomes de arquivos em nomes formatados
+  const formatDogName = (filename: string): string => {
+    return filename
+      .replace('.jpg', '')
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
   useEffect(() => {
     if (!isHovering) {
       const timer = setInterval(() => {
@@ -55,7 +64,7 @@ const MainContent = () => {
                   : "opacity-0 scale-110"
               } ${isAnimating ? "blur-sm" : "blur-0"}`}
               src={dog}
-              alt={`Cão abandonado - ${dog.replace('.jpg', '')}`}
+              alt={`Cão abandonado - ${formatDogName(dog)}`}
             />
           ))}
           
@@ -68,8 +77,7 @@ const MainContent = () => {
                          transform transition-all duration-500 group-hover:translate-y-2">
             <span className="text-sm font-semibold text-gray-900 block">{currentImage + 1}/{dogs.length}</span>
             <h3 className="text-lg font-bold text-gray-900">
-              {dog => dogs[currentImage].replace('.jpg', '').split('-').map(word => 
-                word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+              {formatDogName(dogs[currentImage])}
             </h3>
           </div>
           
