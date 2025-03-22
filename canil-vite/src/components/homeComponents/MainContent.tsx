@@ -24,7 +24,7 @@ const MainContent = () => {
     }, 5000);
     
     return () => clearInterval(timer);
-  }, []);
+  }, [dogs.length]);
 
   const handleDotClick = (index: number) => {
     setCurrentImage(index);
@@ -35,7 +35,7 @@ const MainContent = () => {
       {/* Coluna da imagem */}
       <div className="w-full md:w-1/2 p-6 flex items-center justify-center relative">
         <div className="w-full h-96 md:h-full relative overflow-hidden rounded-lg shadow-2xl">
-          {dogs.map((dog, index: number) => (
+          {dogs.map((dog, index) => (
             <img
               key={index}
               className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform ${
@@ -58,7 +58,7 @@ const MainContent = () => {
           
           {/* Navegação por pontos */}
           <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
-            {dogs.map((_, index: number) => (
+            {dogs.map((_, index) => (
               <button
                 key={index}
                 onClick={() => handleDotClick(index)}
