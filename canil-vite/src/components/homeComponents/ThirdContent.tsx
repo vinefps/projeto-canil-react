@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 const Third = () => {
-  const [hoverFirst, setHoverFirst] = useState(false);
-  const [hoverSecond, setHoverSecond] = useState(false);
+  const [hoverFirst, setHoverFirst] = useState<boolean>(false);
+  const [hoverSecond, setHoverSecond] = useState<boolean>(false);
 
   return (
     <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-white via-white to-orange-50">
