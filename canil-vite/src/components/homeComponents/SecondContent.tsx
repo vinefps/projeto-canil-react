@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const SecondContext = () => {
-  const [hoverIndex, setHoverIndex] = useState(null);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   
   const benefits = [
     {
