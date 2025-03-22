@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function Footer() {
-  // Definindo o tipo explícito e inicializando corretamente
+  // Aqui está a correção principal - definir explicitamente o tipo como number | null
   const [hoveredIcon, setHoveredIcon] = useState<number | null>(null);
   
   const socialMedia = [
@@ -25,15 +25,6 @@ function Footer() {
     { name: 'Alimentação', url: '/dicas/alimentacao' },
     { name: 'Comportamento', url: '/dicas/comportamento' }
   ];
-
-  // Funções para manipular os eventos de hover
-  const handleMouseEnter = (index: number) => {
-    setHoveredIcon(index);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredIcon(null);
-  };
 
   return (
     <footer className="relative bg-gradient-to-b from-blue-500 to-blue-600 pt-16 pb-8">
@@ -167,28 +158,35 @@ function Footer() {
             </div>
             
             <div className="grid grid-cols-2 gap-4">
-              {socialMedia.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={handleMouseLeave}
-                  className={`flex flex-col items-center justify-center p-3 rounded-lg transition-all duration-300 ${
-                    hoveredIcon === index 
-                      ? `bg-gradient-to-r ${social.color} text-white shadow-lg transform -translate-y-1` 
-                      : 'bg-blue-600/30 text-blue-100'
-                  }`}
-                >
-                  <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white p-0.5">
-                    <img 
-                      src={social.icon} 
-                      alt={social.name} 
-                      className="w-full h-full object-cover rounded-full" 
-                    />
-                  </div>
-                  <span className="text-xs mt-1 font-medium">{social.name}</span>
-                </a>
-              ))}
+              {socialMedia.map((social, index) => {
+                // Usando uma função inline para lidar com o evento
+                const handleEnter = () => {
+                  setHoveredIcon(index);
+                };
+                
+                return (
+                  <a
+                    key={index}
+                    href={social.url}
+                    onMouseEnter={handleEnter}
+                    onMouseLeave={() => setHoveredIcon(null)}
+                    className={`flex flex-col items-center justify-center p-3 rounded-lg transition-all duration-300 ${
+                      hoveredIcon === index 
+                        ? `bg-gradient-to-r ${social.color} text-white shadow-lg transform -translate-y-1` 
+                        : 'bg-blue-600/30 text-blue-100'
+                    }`}
+                  >
+                    <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white p-0.5">
+                      <img 
+                        src={social.icon} 
+                        alt={social.name} 
+                        className="w-full h-full object-cover rounded-full" 
+                      />
+                    </div>
+                    <span className="text-xs mt-1 font-medium">{social.name}</span>
+                  </a>
+                );
+              })}
             </div>
             
             {/* App store badges */}
