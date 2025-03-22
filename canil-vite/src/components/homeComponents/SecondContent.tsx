@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const SecondContext = () => {
-  // Definindo o tipo explícito e inicializando corretamente
+  // Aqui está a correção principal - definir explicitamente o tipo como number | null
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   
   const benefits = [
@@ -29,15 +29,6 @@ const SecondContext = () => {
     }
   ];
 
-  // Função para manipular os eventos de hover
-  const handleMouseEnter = (index: number) => {
-    setHoverIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    setHoverIndex(null);
-  };
-
   return (
     <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-6xl mx-auto">
@@ -54,70 +45,77 @@ const SecondContext = () => {
 
         {/* Cards de benefícios */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => (
-            <div 
-              key={benefit.id}
-              className={`relative rounded-xl overflow-hidden transition-all duration-500 ${
-                benefit.featured ? 'transform md:-translate-y-4' : ''
-              } ${hoverIndex === index ? 'shadow-2xl scale-105' : 'shadow-lg'}`}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-            >
-              {/* Faixa colorida no topo */}
-              <div className={`h-2 w-full bg-gradient-to-r ${benefit.color}`}></div>
-              
-              <div className="p-8 bg-white">
-                {/* Ícone com efeito de gradiente */}
-                <div className="relative mb-6 mx-auto w-20 h-20">
-                  <div className={`absolute inset-0 bg-gradient-to-r ${benefit.color} rounded-full opacity-20 animate-pulse`}></div>
-                  <img
-                    src={benefit.icon}
-                    className="absolute inset-0 w-full h-full object-cover rounded-full border-2 border-white shadow-md"
-                    alt={benefit.title}
-                  />
-                </div>
+          {benefits.map((benefit, index) => {
+            // Versão simplificada da função inline com a mesma lógica
+            const handleMouseEnter = () => {
+              setHoverIndex(index);
+            };
+            
+            return (
+              <div 
+                key={benefit.id}
+                className={`relative rounded-xl overflow-hidden transition-all duration-500 ${
+                  benefit.featured ? 'transform md:-translate-y-4' : ''
+                } ${hoverIndex === index ? 'shadow-2xl scale-105' : 'shadow-lg'}`}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={() => setHoverIndex(null)}
+              >
+                {/* Faixa colorida no topo */}
+                <div className={`h-2 w-full bg-gradient-to-r ${benefit.color}`}></div>
                 
-                {/* Título do benefício */}
-                <h3 className="text-xl font-bold text-gray-800 text-center mb-4">
-                  {benefit.title}
-                </h3>
-                
-                {/* Linha decorativa */}
-                <div className={`h-0.5 w-12 mx-auto mb-4 bg-gradient-to-r ${benefit.color}`}></div>
-                
-                {/* Descrição */}
-                <p className="text-gray-600 mb-8 text-center leading-relaxed">
-                  {benefit.description}
-                </p>
-                
-                {/* Botão de link estilizado */}
-                <div className="flex justify-center">
-                  <a 
-                    href="/blog"
-                    className={`group relative inline-flex items-center justify-center p-4 overflow-hidden rounded-full transition-all duration-300 ease-in-out ${
-                      hoverIndex === index 
-                        ? `bg-gradient-to-r ${benefit.color} text-white shadow-lg` 
-                        : 'bg-gray-100 text-gray-700'
-                    }`}
-                  >
-                    <span className="relative flex items-center transition-all duration-300 ease-in-out group-hover:translate-x-1">
-                      Saiba mais
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                  </a>
-                </div>
-                
-                {/* Badge condicional para card destacado */}
-                {benefit.featured && (
-                  <div className="absolute top-4 right-4 bg-gradient-to-r from-orange-400 to-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
-                    Destaque
+                <div className="p-8 bg-white">
+                  {/* Ícone com efeito de gradiente */}
+                  <div className="relative mb-6 mx-auto w-20 h-20">
+                    <div className={`absolute inset-0 bg-gradient-to-r ${benefit.color} rounded-full opacity-20 animate-pulse`}></div>
+                    <img
+                      src={benefit.icon}
+                      className="absolute inset-0 w-full h-full object-cover rounded-full border-2 border-white shadow-md"
+                      alt={benefit.title}
+                    />
                   </div>
-                )}
+                  
+                  {/* Título do benefício */}
+                  <h3 className="text-xl font-bold text-gray-800 text-center mb-4">
+                    {benefit.title}
+                  </h3>
+                  
+                  {/* Linha decorativa */}
+                  <div className={`h-0.5 w-12 mx-auto mb-4 bg-gradient-to-r ${benefit.color}`}></div>
+                  
+                  {/* Descrição */}
+                  <p className="text-gray-600 mb-8 text-center leading-relaxed">
+                    {benefit.description}
+                  </p>
+                  
+                  {/* Botão de link estilizado */}
+                  <div className="flex justify-center">
+                    <a 
+                      href="/blog"
+                      className={`group relative inline-flex items-center justify-center p-4 overflow-hidden rounded-full transition-all duration-300 ease-in-out ${
+                        hoverIndex === index 
+                          ? `bg-gradient-to-r ${benefit.color} text-white shadow-lg` 
+                          : 'bg-gray-100 text-gray-700'
+                      }`}
+                    >
+                      <span className="relative flex items-center transition-all duration-300 ease-in-out group-hover:translate-x-1">
+                        Saiba mais
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                  
+                  {/* Badge condicional para card destacado */}
+                  {benefit.featured && (
+                    <div className="absolute top-4 right-4 bg-gradient-to-r from-orange-400 to-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                      Destaque
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         
         {/* Chamada para ação adicional */}
