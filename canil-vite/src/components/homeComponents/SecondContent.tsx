@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 const SecondContext = () => {
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   
