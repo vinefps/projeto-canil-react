@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const Third = () => {
+  // Definindo explicitamente os tipos para evitar erros de TypeScript
   const [hoverFirst, setHoverFirst] = useState<boolean>(false);
   const [hoverSecond, setHoverSecond] = useState<boolean>(false);
 
