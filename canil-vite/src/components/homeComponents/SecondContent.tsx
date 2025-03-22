@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const SecondContext = () => {
+  // Definindo o tipo explícito e inicializando corretamente
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   
   const benefits = [
@@ -28,6 +29,15 @@ const SecondContext = () => {
     }
   ];
 
+  // Função para manipular os eventos de hover
+  const handleMouseEnter = (index: number) => {
+    setHoverIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverIndex(null);
+  };
+
   return (
     <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-6xl mx-auto">
@@ -50,8 +60,8 @@ const SecondContext = () => {
               className={`relative rounded-xl overflow-hidden transition-all duration-500 ${
                 benefit.featured ? 'transform md:-translate-y-4' : ''
               } ${hoverIndex === index ? 'shadow-2xl scale-105' : 'shadow-lg'}`}
-              onMouseEnter={() => setHoverIndex(index)}
-              onMouseLeave={() => setHoverIndex(null)}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
             >
               {/* Faixa colorida no topo */}
               <div className={`h-2 w-full bg-gradient-to-r ${benefit.color}`}></div>
